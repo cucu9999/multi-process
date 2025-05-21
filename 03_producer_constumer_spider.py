@@ -40,16 +40,16 @@ if __name__ == "__main__":
     for url in blog_spider.urls:
         url_queue.put(url)
     
-    # # producer
-    # for i in range(3):
-    #     t = threading.Thread(target=craw_producer, args=(url_queue, html_queue))
-    #     t.start()
+    # producer
+    for i in range(3):
+        t = threading.Thread(target=craw_producer, args=(url_queue, html_queue))
+        t.start()
     
-    # # consumer
-    # fout = open("result.txt", "w")
-    # for i in range(2):
-    #     t = threading.Thread(target=parse_consumer, args=(html_queue, fout))
-    #     t.start()
+    # consumer
+    fout = open("result.txt", "w")
+    for i in range(2):
+        t = threading.Thread(target=parse_consumer, args=(html_queue, fout))
+        t.start()
     
     # producer-consumer --> 5.9s
 
